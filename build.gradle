@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id 'com.diffplug.spotless' version '6.25.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of javaVersion
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ['--enable-preview', '--release', javaVersion]
+}
+
+tasks.withType(JavaForkOptions) {
+    jvmArgs '--enable-preview'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
