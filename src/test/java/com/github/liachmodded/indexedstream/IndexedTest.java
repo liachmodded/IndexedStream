@@ -9,7 +9,7 @@ import java.util.stream.Gatherer;
 import java.util.stream.IntStream;
 
 @SuppressWarnings("preview")
-public class IndexedTest {
+class IndexedTest {
     @Test
     void testCollector() {
         var l = IntStream.range(0, 100)
